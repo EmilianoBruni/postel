@@ -1,3 +1,5 @@
+import { IWithResult } from './lib/IWithResult';
+
 type Brand<K, T> = K & { __brand: T };
 
 type StringOfLength<Min, Max> = string & {
@@ -66,6 +68,13 @@ interface AddressParameters {
     id: string;
 }
 
+type MissiveBodyText = IWithResult;
+
+type MissiveBodyRowPosition = {
+    type: 'rel' | 'abs';
+    value: number;
+};
+
 export {
     HeaderParameters,
     Convenzione,
@@ -75,5 +84,7 @@ export {
     CartaIntestata,
     BollettinoType,
     LogoBollettino,
-    AddressParameters
+    AddressParameters,
+    MissiveBodyText,
+    MissiveBodyRowPosition
 };
