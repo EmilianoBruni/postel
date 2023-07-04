@@ -363,8 +363,56 @@ describe('Payment tests', () => {
                 );
             });
 
+            test('Check total section', () => {
+                let row = 17
+
+                mBody.addRow(43,'abs')
+                    .appendText('56,31')
+                    .setMaxWidth(10)
+                    .setAlignRight(46)
+                    .back()
+                    .appendText('')
+                    .setMaxWidth(7)
+                    .setAlignRight(11)
+                    .back()
+                    .appendText('56,31')
+                    .setMaxWidth(8)
+                    .setAlignRight(12)
+                    .back()
+                    .appendText('12,15')
+                    .setMaxWidth(7)
+                    .setAlignRight(10)
+                    .back()
+                    .appendText('€68,46')
+                    .setMaxWidth(10)
+                    .setAlignRight(12)
+                
+            });
+
+            test('VAT summary', () => {
+                let row = 19;
+
+                mBody.addRow(48,'abs')
+                    .appendText('A15')
+                    .setMaxWidth(3)
+                    .back()
+                    .appendText('1,10')
+                    .setMaxWidth(8)
+                    .setAlignRight(12)
+                    .back()
+                    .appendText('Art. 15')
+                    .setMaxWidth(9)
+                    .setAlignLeft(6)
+                    .back()
+                    .appendText('')
+                    .setMaxWidth(7)
+                    .setAlignRight(9);
+
+                
+            });
+
             test('footer ', () => {
-                let row = 17;
+                let row = 21;
                 const text =
                     "Copia fattura elettronica disponibile sul sito web dell'Agenzia delle Entrate";
                 mBody.addRow(56, 'abs').appendText(text);
