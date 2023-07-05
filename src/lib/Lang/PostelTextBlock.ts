@@ -1,7 +1,32 @@
+import { testPathIgnorePatterns } from '../../../jest.config';
 import { IWithResult } from '../IWithResult';
 import PostelRow from './PostelRow';
 
 class PostelTextBlock implements IWithResult {
+    private _row: PostelRow;
+    private _text: string;
+
+    public get text(): string {
+        return this._text;
+    }
+    private _maxWidth: number | undefined;
+    public get maxWidth(): number | undefined {
+        return this._maxWidth;
+    }
+    private _alignRight: number | undefined;
+    public get alignRight(): number | undefined {
+        return this._alignRight;
+    }
+    private _alignLeft: number | undefined;
+    public get alignLeft(): number | undefined {
+        return this._alignLeft;
+    }
+
+    private _bold: boolean;
+    public get bold(): boolean {
+        return this._bold;
+    }
+
     constructor(
         parent: PostelRow,
         text: string,
@@ -39,7 +64,8 @@ class PostelTextBlock implements IWithResult {
 
         padding = padding.padStart(2, '0');
 
-        let ret = `@?${padding}`;
+        let ret = '';
+        ret += `@?${padding}`;
         if (this._bold) ret += '@O';
         ret += text;
         if (this._bold) ret += '@o';
@@ -49,29 +75,6 @@ class PostelTextBlock implements IWithResult {
 
     back(): PostelRow {
         return this._row;
-    }
-
-    private _row: PostelRow;
-    private _text: string;
-    public get text(): string {
-        return this._text;
-    }
-    private _maxWidth: number | undefined;
-    public get maxWidth(): number | undefined {
-        return this._maxWidth;
-    }
-    private _alignRight: number | undefined;
-    public get alignRight(): number | undefined {
-        return this._alignRight;
-    }
-    private _alignLeft: number | undefined;
-    public get alignLeft(): number | undefined {
-        return this._alignLeft;
-    }
-
-    private _bold: boolean;
-    public get bold(): boolean {
-        return this._bold;
     }
 
     setText(newText: string): PostelTextBlock {

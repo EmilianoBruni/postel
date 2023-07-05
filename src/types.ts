@@ -1,4 +1,5 @@
 import { IWithResult } from './lib/IWithResult';
+import PostelRow from './lib/Lang/PostelRow';
 
 type Brand<K, T> = K & { __brand: T };
 
@@ -78,12 +79,15 @@ interface BankAccount {
     iban: string;
 }
 
+
 type MissiveBodyText = IWithResult;
 
-type MissiveBodyRowPosition = {
+type PostelRowPosition = {
     type: 'rel' | 'abs';
     value: number;
 };
+
+type PostelRowConstructor = PostelRowPosition;
 
 export {
     HeaderParams,
@@ -98,5 +102,6 @@ export {
     CommParams,
     BankAccount,
     MissiveBodyText,
-    MissiveBodyRowPosition
+    PostelRowPosition,
+    PostelRowConstructor,
 };

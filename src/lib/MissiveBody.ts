@@ -13,11 +13,11 @@ class MissiveBody implements IWithResult {
     }
 
     addRow(distance: number, position: 'rel' | 'abs' = 'rel'): PostelRow {
-        const newRow = new PostelRow({ type: position, value: distance });
+        const newRow = Lang.PostelRow({ type: position, value: distance });
         this._rows.push(newRow);
         return (
             this._rows.at(-1) ||
-            new PostelRow({ type: position, value: distance })
+            Lang.PostelRow({ type: position, value: distance })
         );
     }
 
