@@ -1,9 +1,9 @@
 import { IWithResult } from '../IWithResult';
-import Row from './Row';
+import PostelRow from './Row';
 
-class MissiveTextBlock implements IWithResult {
+class PostelTextBlock implements IWithResult {
     constructor(
-        parent: Row,
+        parent: PostelRow,
         text: string,
         maxWidth?: number,
         alignRight?: number,
@@ -47,11 +47,11 @@ class MissiveTextBlock implements IWithResult {
         return ret;
     }
 
-    back(): Row {
+    back(): PostelRow {
         return this._row;
     }
 
-    private _row: Row;
+    private _row: PostelRow;
     private _text: string;
     public get text(): string {
         return this._text;
@@ -74,27 +74,27 @@ class MissiveTextBlock implements IWithResult {
         return this._bold;
     }
 
-    setText(newText: string): MissiveTextBlock {
+    setText(newText: string): PostelTextBlock {
         this._text = newText;
         return this;
     }
 
-    setMaxWidth(width: number): MissiveTextBlock {
+    setMaxWidth(width: number): PostelTextBlock {
         this._maxWidth = width;
         return this;
     }
 
-    setAlignRight(paddingRight: number): MissiveTextBlock {
+    setAlignRight(paddingRight: number): PostelTextBlock {
         this._alignRight = paddingRight;
         return this;
     }
 
-    setAlignLeft(paddingLeft: number): MissiveTextBlock {
+    setAlignLeft(paddingLeft: number): PostelTextBlock {
         this._alignLeft = paddingLeft;
         return this;
     }
 
-    setBold(mustBeBold: boolean): MissiveTextBlock {
+    setBold(mustBeBold: boolean): PostelTextBlock {
         this._bold = mustBeBold;
         return this;
     }
@@ -104,4 +104,4 @@ class MissiveTextBlock implements IWithResult {
     }
 }
 
-export default MissiveTextBlock;
+export default PostelTextBlock;

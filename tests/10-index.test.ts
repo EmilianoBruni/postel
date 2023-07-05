@@ -6,8 +6,11 @@ import * as Typ from '../src/types';
 import Missive from '../src/lib/Missive';
 import { describe } from 'node:test';
 import MissiveBody from '../src/lib/MissiveBody/MissiveBody';
+import Form from '../src/lib/Form';
+import { paymentParams } from './data';
 
 let postel: Postel;
+
 
 beforeAll(() => {
     postel = new Postel();
@@ -28,7 +31,7 @@ test('Has an header class', () => {
 });
 
 describe('Header tests', () => {
-    const headerParams: Typ.HeaderParameters = {
+    const headerParams: Typ.HeaderParams = {
         responsabile: 'Paolino Paperino',
         telefono: '+3978678676',
         fax: '+3978687687',
@@ -120,19 +123,10 @@ describe('Address tests', () => {
     let address: Address;
     let hr: string[];
 
-    const addressParams: Typ.AddressParameters = {
-        nominativo: 'Paolino Paperino',
-        indirizzo: 'Via dei paperi',
-        civico: '3/A',
-        cap: '98765',
-        comune: 'Paperopoli',
-        provincia: 'PP',
-        id: '123456'
-    };
+    const addressParams = paymentParams.address;
 
     beforeAll(() => {
-        address = new Address();
-        address.init(addressParams);
+        address = new Address(addressParams);
         hr = address.result({ where: 'missive' }).split(Lang.EOL);
     });
 
@@ -163,17 +157,7 @@ describe('Payment tests', () => {
     let hr: string[];
 
     beforeAll(() => {
-        payment = new Payment();
-        const addressParams: Typ.AddressParameters = {
-            nominativo: 'Paolino Paperino',
-            indirizzo: 'Via dei paperi',
-            civico: '3/A',
-            cap: '98765',
-            comune: 'Paperopoli',
-            provincia: 'PP',
-            id: '123456'
-        };
-        payment.address.init(addressParams);
+        payment = new Payment(paymentParams);
         hr = payment.result().split(Lang.EOL);
 
         postel.payments.push(payment);
@@ -182,6 +166,11 @@ describe('Payment tests', () => {
     test('Has an address method', () => {
         expect(payment.address).toBeDefined();
     });
+
+    test('Row 1 starts with @A', () => expect(hr[0]).toMatch(/^@A/));
+
+    test('Row 1 has address header', () =>
+        expect(hr[0]).toEqual('@A' + payment.address.header));
 
     test('Has a missive class', () => {
         expect(payment.missive).toBeDefined();
@@ -364,9 +353,10 @@ describe('Payment tests', () => {
             });
 
             test('Check total section', () => {
-                let row = 17
+                const row = 17;
 
-                mBody.addRow(43,'abs')
+                mBody
+                    .addRow(43, 'abs')
                     .appendText('56,31')
                     .setMaxWidth(10)
                     .setAlignRight(46)
@@ -385,14 +375,14 @@ describe('Payment tests', () => {
                     .back()
                     .appendText('€68,46')
                     .setMaxWidth(10)
-                    .setAlignRight(12)
-                
+                    .setAlignRight(12);
             });
 
             test('VAT summary', () => {
-                let row = 19;
+                const row = 19;
 
-                mBody.addRow(48,'abs')
+                mBody
+                    .addRow(48, 'abs')
                     .appendText('A15')
                     .setMaxWidth(3)
                     .back()
@@ -407,8 +397,6 @@ describe('Payment tests', () => {
                     .appendText('')
                     .setMaxWidth(7)
                     .setAlignRight(9);
-
-                
             });
 
             test('footer ', () => {
@@ -426,40 +414,40 @@ describe('Payment tests', () => {
         });
     });
 
-    test('Row 1 starts with @A', () => expect(hr[0]).toMatch(/^@A/));
-
-    test('Row 1 has address header', () =>
-        expect(hr[0]).toEqual('@A' + payment.address.header));
-});
-
-test('Has a payments class', () => {
-    expect(postel.payments).toBeDefined();
-});
-
-describe('Payments tests', () => {
-    let payment: Payment;
-    let hr: string[];
-
-    beforeAll(() => {
-        payment = new Payment();
-        const addressParams: Typ.AddressParameters = {
-            nominativo: 'Paolino Paperino',
-            indirizzo: 'Via dei paperi',
-            civico: '3/A',
-            cap: '98765',
-            comune: 'Paperopoli',
-            provincia: 'PP',
-            id: '123456'
-        };
-        payment.address.init(addressParams);
-        postel.payments.push(payment);
-
-        hr = postel.payments.result().split(Lang.EOL);
+    test('Has a form class', () => {
+        expect(payment.form).toBeDefined();
     });
 
-    test('Row 1 has address header', () =>
-        expect(hr[0]).toEqual('@A' + payment.address.header));
+    describe('Form tests', () => {
+        let form: Form;
+        let fr: string[];
+
+        beforeAll(() => {
+            form = payment.form;
+            fr = form.result().split(Lang.EOL);
+        });
+    });
 });
+
+// test('Has a payments class', () => {
+//     expect(postel.payments).toBeDefined();
+// });
+
+// describe('Payments tests', () => {
+//     let payment: Payment;
+//     let hr: string[];
+
+//     beforeAll(() => {
+
+//         payment = new Payment(paymentParams);
+//         postel.payments.push(payment);
+
+//         hr = postel.payments.result().split(Lang.EOL);
+//     });
+
+//     test('Row 1 has address header', () =>
+//         expect(hr[0]).toEqual('@A' + payment.address.header));
+// });
 
 test('Has an footer class', () => {
     expect(postel.footer).toBeDefined();

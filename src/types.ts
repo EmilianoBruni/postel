@@ -42,7 +42,7 @@ type Bollettino = 'BOLPEUR5' | 'BOLEUR5';
 type BollettinoType = 'CEE896SI';
 type Prio = 'PRIO' | 'P4P';
 
-interface HeaderParameters {
+interface HeaderParams {
     responsabile: string;
     telefono: string;
     fax: string;
@@ -56,7 +56,7 @@ interface HeaderParameters {
     logoBollettino: LogoBollettino;
 }
 
-interface AddressParameters {
+interface AddressParams {
     header?: string;
     nominativo: string;
     indirizzo: string;
@@ -68,6 +68,16 @@ interface AddressParameters {
     id: string;
 }
 
+interface CommParams {
+    amount: string;
+}
+
+interface BankAccount {
+    name: string;
+    cc: string;
+    iban: string;
+}
+
 type MissiveBodyText = IWithResult;
 
 type MissiveBodyRowPosition = {
@@ -75,8 +85,9 @@ type MissiveBodyRowPosition = {
     value: number;
 };
 
+
 export {
-    HeaderParameters,
+    HeaderParams,
     Convenzione,
     Grafico,
     Bollettino,
@@ -84,7 +95,9 @@ export {
     CartaIntestata,
     BollettinoType,
     LogoBollettino,
-    AddressParameters,
+    AddressParams,
+    CommParams,
+    BankAccount,
     MissiveBodyText,
-    MissiveBodyRowPosition
+    MissiveBodyRowPosition,
 };

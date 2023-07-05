@@ -1,5 +1,5 @@
 import Lang from './Lang';
-import { AddressParameters } from '../types';
+import { AddressParams } from '../types';
 import { IWithResult } from './IWithResult';
 
 class Address implements IWithResult {
@@ -13,7 +13,7 @@ class Address implements IWithResult {
     public provincia = '';
     public id = '000000';
 
-    init({ ...opt }: AddressParameters) {
+    constructor({...opt}: AddressParams) {
         this.header = this.header ?? opt.header;
         this.nominativo = opt.nominativo;
         this.indirizzo = opt.indirizzo;

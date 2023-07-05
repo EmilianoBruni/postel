@@ -1,6 +1,6 @@
 import Lang from './Lang';
 import {
-    HeaderParameters,
+    HeaderParams,
     Convenzione,
     Grafico,
     Bollettino,
@@ -23,7 +23,7 @@ class Header {
     public bollettinoType = 'CEE896SI' as BollettinoType;
     public logoBollettino = '' as LogoBollettino;
 
-    init({ ...opt }: HeaderParameters) {
+    init({ ...opt }: HeaderParams) {
         this.responsabile = opt.responsabile;
         this.telefono = opt.telefono;
         this.fax = opt.fax;

@@ -1,22 +1,22 @@
 import Payment from '../Payment';
 import Lang from '../Lang';
 import { IWithResult } from '../IWithResult';
-import Row from './Row';
+import PostelRow from './PostelRow';
 
 class MissiveBody implements IWithResult {
     private pPayment: Payment;
-    private _rows: Row[];
+    private _rows: PostelRow[];
 
     constructor(payment: Payment) {
         this.pPayment = payment;
         this._rows = [];
     }
 
-    addRow(distance: number, position: 'rel' | 'abs' = 'rel'): Row {
-        const newRow = new Row({ type: position, value: distance });
+    addRow(distance: number, position: 'rel' | 'abs' = 'rel'): PostelRow {
+        const newRow = new PostelRow({ type: position, value: distance });
         this._rows.push(newRow);
         return (
-            this._rows.at(-1) || new Row({ type: position, value: distance })
+            this._rows.at(-1) || new PostelRow({ type: position, value: distance })
         );
     }
 

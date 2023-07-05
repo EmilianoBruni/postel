@@ -1,14 +1,14 @@
 import { MissiveBodyRowPosition } from '../../types';
 import { IWithResult } from '../IWithResult';
 import Lang from '../Lang';
-import MissiveTextBlock from './MissiveTextBlock';
+import PostelTextBlock from './MissiveTextBlock';
 
-class Row implements IWithResult {
+class PostelRow implements IWithResult {
     constructor(position?: MissiveBodyRowPosition) {
         this._position = position ? position : { type: 'abs', value: 1 };
         this._textBlocks = [];
     }
-    private _textBlocks: MissiveTextBlock[];
+    private _textBlocks: PostelTextBlock[];
     private _position: MissiveBodyRowPosition;
 
     public get position(): MissiveBodyRowPosition {
@@ -18,10 +18,10 @@ class Row implements IWithResult {
         this._position = value;
     }
 
-    appendText(text: string): MissiveTextBlock {
-        const newBlock = new MissiveTextBlock(this, text);
+    appendText(text: string): PostelTextBlock {
+        const newBlock = new PostelTextBlock(this, text);
         this._textBlocks.push(newBlock);
-        return this._textBlocks.at(-1) || new MissiveTextBlock(this, text);
+        return this._textBlocks.at(-1) || new PostelTextBlock(this, text);
     }
 
     result(): string {
@@ -42,4 +42,4 @@ class Row implements IWithResult {
     }
 }
 
-export default Row;
+export default PostelRow;
