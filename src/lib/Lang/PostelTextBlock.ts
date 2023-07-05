@@ -1,5 +1,5 @@
 import { IWithResult } from '../IWithResult';
-import PostelRow from './Row';
+import PostelRow from './PostelRow';
 
 class PostelTextBlock implements IWithResult {
     constructor(

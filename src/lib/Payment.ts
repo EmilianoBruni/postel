@@ -9,15 +9,23 @@ class Payment {
     private pMissive: Missive;
     private pForm: Form;
 
-    private _comm : CommParams;
-    private _bank : BankAccount;
+    private _comm: CommParams;
+    private _bank: BankAccount;
 
-    constructor({ address, comm, bank }: { address: AddressParams, comm: CommParams, bank: BankAccount }) {
+    constructor({
+        address,
+        comm,
+        bank
+    }: {
+        address: AddressParams;
+        comm: CommParams;
+        bank: BankAccount;
+    }) {
         this.pAddress = new Address(address);
         this.pMissive = new Missive(this);
         this.pForm = new Form(this);
 
-        this._bank=bank;
+        this._bank = bank;
         this._comm = comm;
     }
 
@@ -33,20 +41,19 @@ class Payment {
         return this.pForm;
     }
 
-    public get bank() : BankAccount {
+    public get bank(): BankAccount {
         return this._bank;
     }
-    
-    public get comm() : CommParams {
+
+    public get comm(): CommParams {
         return this._comm;
     }
-    
 
     public result(): string {
         const rows: string[] = [];
 
         rows.push(this.pMissive.result());
-        rows.push(this.pForm.result())
+        rows.push(this.pForm.result());
 
         return rows.join(Lang.EOL);
     }

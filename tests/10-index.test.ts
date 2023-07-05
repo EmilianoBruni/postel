@@ -5,12 +5,11 @@ import Lang from '../src/lib/Lang';
 import * as Typ from '../src/types';
 import Missive from '../src/lib/Missive';
 import { describe } from 'node:test';
-import MissiveBody from '../src/lib/MissiveBody/MissiveBody';
+import MissiveBody from '../src/lib/MissiveBody';
 import Form from '../src/lib/Form';
 import { paymentParams } from './data';
 
 let postel: Postel;
-
 
 beforeAll(() => {
     postel = new Postel();

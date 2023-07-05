@@ -85,7 +85,6 @@ type MissiveBodyRowPosition = {
     value: number;
 };
 
-
 export {
     HeaderParams,
     Convenzione,
@@ -99,5 +98,5 @@ export {
     CommParams,
     BankAccount,
     MissiveBodyText,
-    MissiveBodyRowPosition,
+    MissiveBodyRowPosition
 };

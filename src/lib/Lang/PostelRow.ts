@@ -1,7 +1,7 @@
 import { MissiveBodyRowPosition } from '../../types';
 import { IWithResult } from '../IWithResult';
 import Lang from '../Lang';
-import PostelTextBlock from './MissiveTextBlock';
+import PostelTextBlock from './PostelTextBlock';
 
 class PostelRow implements IWithResult {
     constructor(position?: MissiveBodyRowPosition) {

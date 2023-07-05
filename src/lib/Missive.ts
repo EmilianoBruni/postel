@@ -1,7 +1,7 @@
 import Lang from './Lang';
 import Payment from './Payment';
 import { IWithResult } from './IWithResult';
-import MissiveBody from './MissiveBody/MissiveBody';
+import MissiveBody from './MissiveBody';
 
 class Missive implements IWithResult {
     private pPayment: Payment;

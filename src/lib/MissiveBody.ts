@@ -1,7 +1,7 @@
-import Payment from '../Payment';
-import Lang from '../Lang';
-import { IWithResult } from '../IWithResult';
-import PostelRow from './PostelRow';
+import Payment from './Payment';
+import Lang from './Lang';
+import { IWithResult } from './IWithResult';
+import PostelRow from './Lang/PostelRow';
 
 class MissiveBody implements IWithResult {
     private pPayment: Payment;
@@ -16,7 +16,8 @@ class MissiveBody implements IWithResult {
         const newRow = new PostelRow({ type: position, value: distance });
         this._rows.push(newRow);
         return (
-            this._rows.at(-1) || new PostelRow({ type: position, value: distance })
+            this._rows.at(-1) ||
+            new PostelRow({ type: position, value: distance })
         );
     }
 

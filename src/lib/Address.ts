@@ -13,7 +13,7 @@ class Address implements IWithResult {
     public provincia = '';
     public id = '000000';
 
-    constructor({...opt}: AddressParams) {
+    constructor({ ...opt }: AddressParams) {
         this.header = this.header ?? opt.header;
         this.nominativo = opt.nominativo;
         this.indirizzo = opt.indirizzo;
