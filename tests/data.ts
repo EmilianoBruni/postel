@@ -1,5 +1,25 @@
 import Currency from '../src/lib/Currency';
-import { AddressParams, CommParams, BankAccount } from '../src/types';
+import {
+    AddressParams,
+    CommParams,
+    BankAccount,
+    HeaderParams,
+    CartaIntestata,
+    Convenzione,
+    Grafico,
+    LogoBollettino
+} from '../src/types';
+
+const headerParams: HeaderParams = {
+    responsabile: 'Paolino Paperino',
+    telefono: '+3978678676',
+    fax: '+3978687687',
+    mail: 'paolino@paperino.it',
+    idConvenzione: 188778 as Convenzione,
+    grafico: 'FT56666AGG' as Grafico,
+    cartaIntestata: 'JRRY66789' as CartaIntestata,
+    logoBollettino: 'KU66758' as LogoBollettino
+};
 
 const addressParams: AddressParams = {
     nominativo: 'Paolino Paperino',
@@ -30,4 +50,4 @@ const paymentParams = {
     bank: bankAccount
 };
 
-export { paymentParams };
+export { paymentParams, headerParams };

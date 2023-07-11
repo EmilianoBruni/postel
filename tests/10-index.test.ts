@@ -2,12 +2,11 @@ import Postel from '../src';
 import Payment from '../src/lib/Payment';
 import Address from '../src/lib/Address';
 import Lang from '../src/lib/Lang';
-import * as Typ from '../src/types';
 import Missive from '../src/lib/Missive';
 import { describe } from 'node:test';
 import MissiveBody from '../src/lib/MissiveBody';
 import Form from '../src/lib/Form';
-import { paymentParams } from './data';
+import { paymentParams, headerParams } from './data';
 
 let postel: Postel;
 
@@ -30,19 +29,10 @@ test('Has an header class', () => {
 });
 
 describe('Header tests', () => {
-    const headerParams: Typ.HeaderParams = {
-        responsabile: 'Paolino Paperino',
-        telefono: '+3978678676',
-        fax: '+3978687687',
-        mail: 'paolino@paperino.it',
-        idConvenzione: 188778 as Typ.Convenzione,
-        grafico: 'FT56666AGG' as Typ.Grafico,
-        cartaIntestata: 'JRRY66789' as Typ.CartaIntestata,
-        logoBollettino: 'KU66758' as Typ.LogoBollettino
-    };
+    const hParams = headerParams;
     let hr: string[];
     beforeAll(() => {
-        postel.header.init(headerParams);
+        postel.header.init(hParams);
         hr = postel.header.result().split(Lang.EOL);
     });
 
@@ -52,7 +42,7 @@ describe('Header tests', () => {
 
     test(':R: record is right', () => {
         expect(hr[0]).toEqual(
-            ':R: ' + Object.values(headerParams).splice(0, 4).join(',')
+            ':R: ' + Object.values(hParams).splice(0, 4).join(',')
         );
     });
     test('second line is :I: record empty', () => {
@@ -69,12 +59,12 @@ describe('Header tests', () => {
     });
     test('line4 has correct Z id', () => {
         expect(hr[3].substring(4, 12)).toEqual(
-            'Z' + headerParams.idConvenzione.toString().padStart(7, '0')
+            'Z' + hParams.idConvenzione.toString().padStart(7, '0')
         );
     });
     test('line4 has correct grafico', () => {
-        expect(hr[3].substring(12, 12 + headerParams.grafico.length)).toEqual(
-            headerParams.grafico
+        expect(hr[3].substring(12, 12 + hParams.grafico.length)).toEqual(
+            hParams.grafico
         );
     });
     test('line4 has correct bollettino type', () => {
@@ -88,7 +78,7 @@ describe('Header tests', () => {
     });
 
     test('line 5 includes right cartaIntestata', () => {
-        expect(hr[4].substring(8, 17)).toEqual(headerParams.cartaIntestata);
+        expect(hr[4].substring(8, 17)).toEqual(hParams.cartaIntestata);
     });
 
     test('line 6 start with //G 02 record', () => {
@@ -105,7 +95,7 @@ describe('Header tests', () => {
 
     test('line 7 has right logo bollettino', () => {
         expect(
-            hr[6].substring(8, 8 + headerParams.logoBollettino.length)
+            hr[6].substring(8, 8 + hParams.logoBollettino.length)
         ).toEqual(postel.header.logoBollettino);
     });
 
