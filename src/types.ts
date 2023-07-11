@@ -1,5 +1,5 @@
+import Currency from './lib/Currency';
 import { IWithResult } from './lib/IWithResult';
-import PostelRow from './lib/Lang/PostelRow';
 
 type Brand<K, T> = K & { __brand: T };
 
@@ -70,7 +70,10 @@ interface AddressParams {
 }
 
 interface CommParams {
-    amount: string;
+    amount: Currency ;
+    invoiceId: string;
+    invoiceDate: Date;
+    installment: number;
 }
 
 interface BankAccount {
@@ -83,8 +86,8 @@ interface BankAccount {
 type MissiveBodyText = IWithResult;
 
 type PostelRowPosition = {
-    type: 'rel' | 'abs';
-    value: number;
+    type: 'rel' | 'abs' | 'bot';
+    value?: number;
 };
 
 type PostelRowConstructor = PostelRowPosition;

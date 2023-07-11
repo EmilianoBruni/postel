@@ -56,16 +56,16 @@ class PostelTextBlock implements IWithResult {
         const textLen = textTrunc.length;
         const text = textTrunc.replace('€', '@L:'); // TODO: implement others
 
-        let padding = '0';
+        let padding = 0;
         if (this._alignRight !== undefined)
-            padding = (this._alignRight - textLen).toString();
+            padding = this._alignRight - textLen
 
-        if (this._alignLeft !== undefined) padding = this._alignLeft.toString();
-
-        padding = padding.padStart(2, '0');
+        if (this._alignLeft !== undefined) padding = this._alignLeft;
 
         let ret = '';
-        ret += `@?${padding}`;
+
+        if (padding !== 0) ret += '@?' + padding.toString().padStart(2, '0');
+
         if (this._bold) ret += '@O';
         ret += text;
         if (this._bold) ret += '@o';

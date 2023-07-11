@@ -47,15 +47,16 @@ class PostelRow implements IWithResult {
     result(): string {
         const rows = [];
 
-        let row0 = '!';
-        if (this._position.type === 'abs') row0 += 'TOP;';
-        row0 += Lang.newLine(this._position.value);
-        if (this._lineSpacing) row0+=';INL ' + this._lineSpacing;
-        if (this._font) row0+=';TEX ' + this._font;
+        const rowM:string[] = []
+        if (this._position.type === 'abs') rowM.push('TOP');
+        if (this._position.type === 'bot') rowM.push('BOT')
+        else rowM.push(Lang.newLine(this._position.value ?? 0));
+        if (this._lineSpacing) rowM.push('INL ' + this._lineSpacing);
+        if (this._font) rowM.push('TEX ' + this._font);
 
-        rows.push(row0);
+        rows.push('!' + rowM.join(';'));
 
-        row0 = this._textBlocks.join('');
+        let row0 = this._textBlocks.join('');
         if (this._prePostText.pre  !== undefined) row0 = this._prePostText.pre + row0;
         if (this._prePostText.post  !== undefined) row0 += this._prePostText.post;
         rows.push(row0);

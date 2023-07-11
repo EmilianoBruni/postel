@@ -1,5 +1,5 @@
 import { PostelRowConstructor } from "../types";
-import PostelRow from "./Lang/PostelRow";
+import PostelRow from "./Syntax/PostelRow";
 
 class Lang {
     static EOL = '\r\n';

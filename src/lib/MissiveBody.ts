@@ -1,7 +1,7 @@
 import Payment from './Payment';
 import Lang from './Lang';
 import { IWithResult } from './IWithResult';
-import PostelRow from './Lang/PostelRow';
+import PostelRow from './Syntax/PostelRow';
 
 class MissiveBody implements IWithResult {
     private pPayment: Payment;

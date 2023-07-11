@@ -311,7 +311,7 @@ describe('Payment tests', () => {
                     '!TOP;SPA 26'
                 );
                 expect(mBody.result().split(Lang.EOL)[row++]).toEqual(
-                    '@?00Canone mensile WADSL HOME 10X 10M/2M@?0202/05/23-16/05/23@?02N.  @?01   0@?02   20,41@?02   10,21@?02I22'
+                    'Canone mensile WADSL HOME 10X 10M/2M@?0202/05/23-16/05/23@?02N.  @?01   0@?02   20,41@?02   10,21@?02I22'
                 );
 
                 mBody
@@ -347,7 +347,7 @@ describe('Payment tests', () => {
 
                 expect(mBody.result().split(Lang.EOL)[row++]).toEqual('!SPA 0');
                 expect(mBody.result().split(Lang.EOL)[row++]).toEqual(
-                    '@?00Da impegno 7829/W del 20/09/2019 - (@?02                 @?02    @?01    @?02        @?02        @?02   '
+                    'Da impegno 7829/W del 20/09/2019 - (@?02                 @?02    @?01    @?02        @?02        @?02   '
                 );
             });
 
@@ -407,7 +407,7 @@ describe('Payment tests', () => {
                     '!TOP;SPA 56'
                 );
                 expect(mBody.result().split(Lang.EOL)[row++]).toEqual(
-                    '@?00' + text
+                    text
                 );
             });
         });
