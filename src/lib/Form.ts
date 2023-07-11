@@ -4,11 +4,11 @@ import Lang from './Lang';
 import Payment from './Payment';
 
 type TCodeLine = {
-    customCodCliChecksum: string,
-    amount: string[],
-    cc: string,
-    docId: string
-}
+    customCodCliChecksum: string;
+    amount: string[];
+    cc: string;
+    docId: string;
+};
 
 class Form implements IWithResult {
     private pPayment: Payment;
@@ -30,12 +30,12 @@ class Form implements IWithResult {
     }
 
     private ccLine(): string {
-
-        const PRow = Lang.PostelRow({type: 'abs',value: 29});
+        const PRow = Lang.PostelRow({ type: 'abs', value: 29 });
 
         // ? Don't know why @-
-        return PRow.lineSpacing(5).font(5)
-            .prePostText('@-','@+')
+        return PRow.lineSpacing(5)
+            .font(5)
+            .prePostText('@-', '@+')
             .appendText(this.parent.bank.cc)
             .setAlignRight(28)
             .setMaxWidth(12)
@@ -44,62 +44,65 @@ class Form implements IWithResult {
             .setMaxWidth(12)
             .setAlignRight(46)
             .back()
-            .result()
+            .result();
     }
 
     private accountHolder(): string {
-        return Lang.PostelRow({type: 'abs',value: 33})
-        .prePostText('@>')
-        .appendText(this.parent.bank.name)
-        .back()
-        .result() +
-        Lang.EOL +
-        Lang.PostelRow({value: -1, type: 'rel'})
-        .prePostText(undefined, '<@')
-        .appendText(this.parent.bank.name)
-        .setAlignLeft(52)
-        .back()
-        .result();
-
+        return (
+            Lang.PostelRow({ type: 'abs', value: 33 })
+                .prePostText('@>')
+                .appendText(this.parent.bank.name)
+                .back()
+                .result() +
+            Lang.EOL +
+            Lang.PostelRow({ value: -1, type: 'rel' })
+                .prePostText(undefined, '<@')
+                .appendText(this.parent.bank.name)
+                .setAlignLeft(52)
+                .back()
+                .result()
+        );
     }
 
     private amounts(): string {
-        return Lang.PostelRow({type:'abs', value: 29})
-        .prePostText('@-', '@+')
-        .appendText(this.parent.comm.amount.toPostelString())
-        .setMaxWidth(11)
-        .setAlignRight(45)
-        .back()
-        .appendText(this.parent.comm.amount.toPostelString())
-        .setMaxWidth(11)
-        .setAlignRight(61)
-        .back()
-        .result();
+        return Lang.PostelRow({ type: 'abs', value: 29 })
+            .prePostText('@-', '@+')
+            .appendText(this.parent.comm.amount.toPostelString())
+            .setMaxWidth(11)
+            .setAlignRight(45)
+            .back()
+            .appendText(this.parent.comm.amount.toPostelString())
+            .setMaxWidth(11)
+            .setAlignRight(61)
+            .back()
+            .result();
     }
 
     private customCodCli(): string {
-        return this.parent.address.id.padStart(6, '0') +
-        this.parent.comm.invoiceId.padStart(6, '0') +
-            this.parent.comm.installment.toString().padStart(2,'0') +
+        return (
+            this.parent.address.id.padStart(6, '0') +
+            this.parent.comm.invoiceId.padStart(6, '0') +
+            this.parent.comm.installment.toString().padStart(2, '0') +
             this.parent.comm.invoiceDate.getFullYear().toString().substring(2)
+        );
     }
 
-    private checkSum(baseNum: number) : number {
+    private checkSum(baseNum: number): number {
         return baseNum % 93;
     }
 
-    private customCodCliCheckSum () : string {
+    private customCodCliCheckSum(): string {
         const ccc = this.customCodCli();
         return ccc + this.checkSum(Number.parseInt(ccc)).toString();
     }
 
-    private customCodCliLine() : string {
-        return Lang.PostelRow({type: 'abs', value: 38})
-        .prePostText('@>@+', '@<@-')
-        .appendText(this.customCodCliCheckSum())
-        .setAlignLeft(52)
-        .back()
-        .result();
+    private customCodCliLine(): string {
+        return Lang.PostelRow({ type: 'abs', value: 38 })
+            .prePostText('@>@+', '@<@-')
+            .appendText(this.customCodCliCheckSum())
+            .setAlignLeft(52)
+            .back()
+            .result();
     }
 
     private ibanSpaces(): string {
@@ -109,36 +112,37 @@ class Form implements IWithResult {
     }
 
     private iban(): string {
-        return Lang.PostelRow({type: 'abs', value: 46})
-        .font(4)
-        .appendText(this.ibanSpaces())
-        .setAlignLeft(34)
-        .back()
-        .appendText(this.ibanSpaces())
-        .setAlignLeft(49)
-        .back()
-        .result()
+        return Lang.PostelRow({ type: 'abs', value: 46 })
+            .font(4)
+            .appendText(this.ibanSpaces())
+            .setAlignLeft(34)
+            .back()
+            .appendText(this.ibanSpaces())
+            .setAlignLeft(49)
+            .back()
+            .result();
     }
 
     private address(): string {
-        const address = this.parent.address.result({where: 'form'});
+        const address = this.parent.address.result({ where: 'form' });
         const addressA = address.split(Lang.EOL);
 
-        const pr1 = Lang.PostelRow({type: 'abs', value: 32})
-        .font(2)
-        .appendText(address)
-        .setAlignLeft(8)
-        .back();
+        const pr1 = Lang.PostelRow({ type: 'abs', value: 32 })
+            .font(2)
+            .appendText(address)
+            .setAlignLeft(8)
+            .back();
 
-        const pr2 = Lang.PostelRow({type: 'rel', value: -4})
+        const pr2 = Lang.PostelRow({ type: 'rel', value: -4 });
 
-        addressA.forEach((item,idx) => {
-            pr2.appendText(item).setAlignLeft(idx == 0 ? 94 : 87)
-            .back().appendText(Lang.EOL);
+        addressA.forEach((item, idx) => {
+            pr2.appendText(item)
+                .setAlignLeft(idx == 0 ? 94 : 87)
+                .back()
+                .appendText(Lang.EOL);
         });
 
         return pr1.result() + Lang.EOL + pr2.result();
-
     }
 
     private codeLineItems(): TCodeLine {
@@ -146,15 +150,15 @@ class Form implements IWithResult {
         const cl: TCodeLine = {
             customCodCliChecksum: this.customCodCliCheckSum(),
             docId: '896',
-            amount: [amountA[0].padStart(8,'0'),amountA[1]],
-            cc: this.parent.bank.cc.padStart(12,'0')
-        }
+            amount: [amountA[0].padStart(8, '0'), amountA[1]],
+            cc: this.parent.bank.cc.padStart(12, '0')
+        };
         return cl;
     }
 
-    private codeLine() : string {
+    private codeLine(): string {
         const cl = this.codeLineItems();
-        return Lang.PostelRow({type: 'bot'})
+        return Lang.PostelRow({ type: 'bot' })
             .prePostText('@+', '@-')
             .font(5)
             .appendText('<' + cl.customCodCliChecksum + '>')
@@ -168,28 +172,40 @@ class Form implements IWithResult {
             .back()
             .appendText('<  ' + cl.docId + '>')
             .back()
-            .result()
+            .result();
     }
 
-    private barcode() : string {
+    private barcode(): string {
         const cl = this.codeLineItems();
-        return Lang.PostelRow({type: 'abs', value: 64})
-        .lineSpacing(144)
-        .font(98)
-        .appendText(cl.customCodCliChecksum + cl.cc + cl.amount[0] + cl.amount[1] + cl.docId)
-        .back()
-        .result();
+        return Lang.PostelRow({ type: 'abs', value: 64 })
+            .lineSpacing(144)
+            .font(98)
+            .appendText(
+                cl.customCodCliChecksum +
+                    cl.cc +
+                    cl.amount[0] +
+                    cl.amount[1] +
+                    cl.docId
+            )
+            .back()
+            .result();
     }
 
-    private  datamatrix() : string {
+    private datamatrix(): string {
         const cl = this.codeLineItems();
-        return Lang.PostelRow({type: 'abs', value: 70})
-        .lineSpacing(59)
-        .font(4)
-        .prePostText('@<@-@Z99', '@>@+')
-        .appendText(cl.customCodCliChecksum + cl.cc + cl.amount[0] + cl.amount[1] + cl.docId)
-        .back()
-        .result();
+        return Lang.PostelRow({ type: 'abs', value: 70 })
+            .lineSpacing(59)
+            .font(4)
+            .prePostText('@<@-@Z99', '@>@+')
+            .appendText(
+                cl.customCodCliChecksum +
+                    cl.cc +
+                    cl.amount[0] +
+                    cl.amount[1] +
+                    cl.docId
+            )
+            .back()
+            .result();
     }
 
     result(): string {
@@ -199,12 +215,12 @@ class Form implements IWithResult {
         rows.push(this.ccLine());
         rows.push(this.accountHolder());
         rows.push(this.amounts());
-        rows.push(this.customCodCliLine())
-        rows.push(this.iban())
-        rows.push(this.address())
-        rows.push(this.codeLine())
-        rows.push(this.barcode())
-        rows.push(this.datamatrix())
+        rows.push(this.customCodCliLine());
+        rows.push(this.iban());
+        rows.push(this.address());
+        rows.push(this.codeLine());
+        rows.push(this.barcode());
+        rows.push(this.datamatrix());
 
         return rows.join(Lang.EOL);
     }

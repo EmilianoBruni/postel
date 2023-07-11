@@ -1,7 +1,6 @@
 class Currency extends Number {
     constructor(value: number) {
-        super(value)
-        
+        super(value);
     }
 
     public toPostelString(): string {

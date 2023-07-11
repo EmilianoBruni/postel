@@ -58,7 +58,7 @@ class PostelTextBlock implements IWithResult {
 
         let padding = 0;
         if (this._alignRight !== undefined)
-            padding = this._alignRight - textLen
+            padding = this._alignRight - textLen;
 
         if (this._alignLeft !== undefined) padding = this._alignLeft;
 

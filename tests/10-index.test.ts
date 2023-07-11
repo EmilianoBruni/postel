@@ -406,9 +406,7 @@ describe('Payment tests', () => {
                 expect(mBody.result().split(Lang.EOL)[row++]).toEqual(
                     '!TOP;SPA 56'
                 );
-                expect(mBody.result().split(Lang.EOL)[row++]).toEqual(
-                    text
-                );
+                expect(mBody.result().split(Lang.EOL)[row++]).toEqual(text);
             });
         });
     });

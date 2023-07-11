@@ -1,5 +1,5 @@
-import { PostelRowConstructor } from "../types";
-import PostelRow from "./Syntax/PostelRow";
+import { PostelRowConstructor } from '../types';
+import PostelRow from './Syntax/PostelRow';
 
 class Lang {
     static EOL = '\r\n';
@@ -8,9 +8,9 @@ class Lang {
         return 'SPA ' + jumpLineCount.toString();
     };
 
-    static PostelRow = (opt:PostelRowConstructor) :PostelRow => {
+    static PostelRow = (opt: PostelRowConstructor): PostelRow => {
         return new PostelRow(opt);
-    }
+    };
 }
 
 export default Lang;

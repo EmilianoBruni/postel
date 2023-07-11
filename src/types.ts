@@ -70,7 +70,7 @@ interface AddressParams {
 }
 
 interface CommParams {
-    amount: Currency ;
+    amount: Currency;
     invoiceId: string;
     invoiceDate: Date;
     installment: number;
@@ -81,7 +81,6 @@ interface BankAccount {
     cc: string;
     iban: string;
 }
-
 
 type MissiveBodyText = IWithResult;
 
@@ -106,5 +105,5 @@ export {
     BankAccount,
     MissiveBodyText,
     PostelRowPosition,
-    PostelRowConstructor,
+    PostelRowConstructor
 };
