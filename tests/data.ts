@@ -17,7 +17,7 @@ const headerParams: HeaderParams = {
     mail: 'paolino@paperino.it',
     idConvenzione: 188778 as Convenzione,
     grafico: 'FT56666AGG' as Grafico,
-    cartaIntestata: 'JRRY66789' as CartaIntestata,
+    cartaIntestata: 'JRRY6678' as CartaIntestata,
     logoBollettino: 'KU66758' as LogoBollettino
 };
 
