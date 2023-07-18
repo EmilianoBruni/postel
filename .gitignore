@@ -134,3 +134,4 @@ core
 .pnpm-store
 pnpm-lock.yaml
 .devcontainer.json
+tests/data.priv.ts
