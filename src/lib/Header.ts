@@ -45,7 +45,7 @@ class Header {
             `:R: ${this.responsabile},${this.telefono},${this.fax},${this.mail}`
         );
         rows.push(':I:');
-        rows.push(`:H: ${this.prio}`);
+        rows.push(`:H: TIPOINVIO (${this.prio})`);
 
         const row4 =
             '//C Z' +
