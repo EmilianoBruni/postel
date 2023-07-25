@@ -9,11 +9,13 @@ class PostelRow implements IWithResult {
     private _lineSpacing: number | undefined;
     private _font: number | undefined;
     private _prePostText: { pre: string | undefined; post: string | undefined };
+    private _shebang: boolean;
 
     constructor(opt: PostelRowConstructor) {
         this._position = opt ?? { type: 'abs', value: 1 };
         this._textBlocks = [];
         this._prePostText = { pre: undefined, post: undefined };
+        this._shebang = true;
     }
 
     public get position(): PostelRowPosition {
@@ -21,6 +23,11 @@ class PostelRow implements IWithResult {
     }
     public set position(value: PostelRowPosition) {
         this._position = value;
+    }
+
+    public shebang(newValue: boolean): PostelRow {
+        this._shebang = newValue;
+        return this;
     }
 
     public lineSpacing(spaceCount?: number): PostelRow {
@@ -51,13 +58,18 @@ class PostelRow implements IWithResult {
         const rows = [];
 
         const rowM: string[] = [];
+        // 1° ILN code
+        if (this._lineSpacing) rowM.push('INL ' + this._lineSpacing);
+        // 2° TOP
         if (this._position.type === 'abs') rowM.push('TOP');
+        // 3° TEX code
+        if (this._font) rowM.push('TEX ' + this._font);
+        // 4° BOT/SPA
         if (this._position.type === 'bot') rowM.push('BOT');
         else rowM.push(Lang.newLine(this._position.value ?? 0));
-        if (this._lineSpacing) rowM.push('INL ' + this._lineSpacing);
-        if (this._font) rowM.push('TEX ' + this._font);
 
-        rows.push('!' + rowM.join(';'));
+        const shebang = () => (this._shebang ? '!' : '');
+        rows.push(shebang() + rowM.join(';'));
 
         let row0 = this._textBlocks.join('');
         if (this._prePostText.pre !== undefined)
