@@ -1,7 +1,7 @@
 import Postel from '../src';
 import Lang from '../src/lib/Lang';
 import { describe } from 'node:test';
-import { paymentParams, headerParams } from './data';
+import { headerParams } from './data';
 //import { headerParams } from './data.priv';
 
 let postel: Postel;
@@ -82,9 +82,9 @@ describe('Header tests', () => {
     });
 
     test('line 7 has right logo bollettino', () => {
-        expect(
-            hr[6].substring(8, 8 + hParams.logoBollettino.length)
-        ).toEqual(postel.header.logoBollettino);
+        expect(hr[6].substring(8, 8 + hParams.logoBollettino.length)).toEqual(
+            postel.header.logoBollettino
+        );
     });
 
     test('line 7 ends with S', () => {
