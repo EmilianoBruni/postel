@@ -1,4 +1,3 @@
-import { INSPECT_MAX_BYTES } from 'buffer';
 import { IWithResult } from './IWithResult';
 import Lang from './Lang';
 import Payment from './Payment';
@@ -24,7 +23,11 @@ class Form implements IWithResult {
     private header(): string {
         const rows: string[] = [];
 
-        rows.push('!NEW 2;INL 0;TEX 2;TOP');
+        // I don't know why but this is no good
+        // rows.push('!NEW 2;INL 0;TEX 2;TOP');
+        // while this is good
+        rows.push('!NEW 2;INL 0;TEX 2;INL 5');
+        rows.push('!INL 0;TOP');
         rows.push('@G01');
         return rows.join(Lang.EOL);
     }
@@ -56,7 +59,7 @@ class Form implements IWithResult {
                 .result() +
             Lang.EOL +
             Lang.PostelRow({ value: -1, type: 'rel' })
-                .prePostText(undefined, '<@')
+                .prePostText(undefined, '@<')
                 .appendText(this.parent.bank.name)
                 .setAlignLeft(52)
                 .back()
@@ -68,12 +71,10 @@ class Form implements IWithResult {
         return Lang.PostelRow({ type: 'abs', value: 29 })
             .prePostText('@-', '@+')
             .appendText(this.parent.comm.amount.toPostelString())
-            .setMaxWidth(11)
-            .setAlignRight(45)
+            .setAlignLeft(34)
             .back()
             .appendText(this.parent.comm.amount.toPostelString())
-            .setMaxWidth(11)
-            .setAlignRight(61)
+            .setAlignLeft(50)
             .back()
             .result();
     }
@@ -164,48 +165,57 @@ class Form implements IWithResult {
             .appendText('<' + cl.customCodCliChecksum + '>')
             .setAlignLeft(51)
             .back()
-            .appendText(cl.amount[0] + '+' + cl.amount[1])
+            .appendText(cl.amount[0] + '+' + cl.amount[1] + '>')
             .setAlignLeft(7)
             .back()
-            .appendText(cl.cc)
+            .appendText(cl.cc + '<')
             .setAlignLeft(2)
             .back()
-            .appendText('<  ' + cl.docId + '>')
+            .appendText(cl.docId + '>')
+            .setAlignLeft(2)
             .back()
             .result();
     }
 
     private barcode(): string {
         const cl = this.codeLineItems();
-        return Lang.PostelRow({ type: 'abs', value: 64 })
-            .lineSpacing(144)
-            .font(98)
-            .appendText(
-                cl.customCodCliChecksum +
-                    cl.cc +
-                    cl.amount[0] +
-                    cl.amount[1] +
-                    cl.docId
-            )
-            .back()
-            .result();
+        return (
+            Lang.PostelRow({ type: 'abs', value: 64 })
+                .lineSpacing(144)
+                .font(4)
+                .result() +
+            Lang.PostelRow({ type: 'rel' })
+                .font(98)
+                .appendText(
+                    cl.customCodCliChecksum +
+                        cl.cc +
+                        cl.amount[0] +
+                        cl.amount[1] +
+                        cl.docId
+                )
+                .back()
+                .result()
+        );
     }
 
     private datamatrix(): string {
         const cl = this.codeLineItems();
-        return Lang.PostelRow({ type: 'abs', value: 70 })
-            .lineSpacing(59)
-            .font(4)
-            .prePostText('@<@-@Z99', '@>@+')
-            .appendText(
-                cl.customCodCliChecksum +
-                    cl.cc +
-                    cl.amount[0] +
-                    cl.amount[1] +
-                    cl.docId
-            )
-            .back()
-            .result();
+        return (
+            '!INL 0;TEX 2;INL 5;TEX 4;' +
+            Lang.PostelRow({ type: 'abs', value: 70 })
+                .shebang(false)
+                .lineSpacing(59)
+                .prePostText('@<@-@Z99', '@>@+')
+                .appendText(
+                    cl.customCodCliChecksum +
+                        cl.cc +
+                        cl.amount[0] +
+                        cl.amount[1] +
+                        cl.docId
+                )
+                .back()
+                .result()
+        );
     }
 
     result(): string {
