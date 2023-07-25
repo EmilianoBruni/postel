@@ -28,14 +28,16 @@ const addressParams: AddressParams = {
     cap: '98765',
     comune: 'Paperopoli',
     provincia: 'PP',
-    id: '46692'
+    id: '46692',
+    fiscalCode: 'ABCDEF12G34H567I'
 };
 
 const commParams: CommParams = {
     amount: new Currency(68.46),
     invoiceId: '75821',
     invoiceDate: new Date('2023-04-17T12:00:00'),
-    installment: 0
+    installment: 0,
+    expiration: new Date('2023-05-17T12:00:00')
 };
 
 const bankAccount: BankAccount = {
