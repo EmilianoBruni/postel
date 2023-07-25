@@ -1,4 +1,3 @@
-import { testPathIgnorePatterns } from '../../../jest.config';
 import { IWithResult } from '../IWithResult';
 import PostelRow from './PostelRow';
 
