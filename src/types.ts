@@ -67,6 +67,7 @@ interface AddressParams {
     comune: string;
     provincia: string;
     id: string;
+    fiscalCode: string;
 }
 
 interface CommParams {
@@ -74,6 +75,7 @@ interface CommParams {
     invoiceId: string;
     invoiceDate: Date;
     installment: number;
+    expiration: Date;
 }
 
 interface BankAccount {
