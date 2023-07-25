@@ -250,8 +250,6 @@ describe('Payment tests', () => {
             });
 
             test('Check total section', () => {
-                const row = 17;
-
                 mBody
                     .addRow(43, 'abs')
                     .appendText('56,31')
@@ -276,8 +274,6 @@ describe('Payment tests', () => {
             });
 
             test('VAT summary', () => {
-                const row = 19;
-
                 mBody
                     .addRow(48, 'abs')
                     .appendText('A15')
