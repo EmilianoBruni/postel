@@ -14,11 +14,11 @@ class Address implements IWithResult {
     public id = '000000';
 
     constructor({ ...opt }: AddressParams) {
-        this.header = this.header ?? opt.header;
+        this.header = opt.header ?? this.header;
         this.nominativo = opt.nominativo;
         this.indirizzo = opt.indirizzo;
         this.civico = opt.civico;
-        this.localita = this.localita ?? opt.localita;
+        this.localita = opt.localita ?? this.localita;
         this.cap = opt.cap;
         this.comune = opt.comune;
         this.provincia = opt.provincia;
