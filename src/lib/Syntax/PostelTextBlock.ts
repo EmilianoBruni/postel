@@ -69,7 +69,7 @@ class PostelTextBlock implements IWithResult {
         ret += text;
         if (this._bold) ret += '@o';
 
-        return ret === '!' ? '' : ret;
+        return ret;
     }
 
     back(): PostelRow {
