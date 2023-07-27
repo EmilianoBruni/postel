@@ -49,7 +49,7 @@ class PostelTextBlock implements IWithResult {
         if (this._alignRight !== undefined && this._maxWidth !== undefined)
             textTrunc = textTrunc.padStart(this._maxWidth, ' ');
 
-        if (this._alignLeft !== undefined && this._maxWidth !== undefined)
+        else if (this._maxWidth !== undefined)
             textTrunc = textTrunc.padEnd(this._maxWidth, ' ');
 
         const textLen = textTrunc.length;
@@ -69,7 +69,7 @@ class PostelTextBlock implements IWithResult {
         ret += text;
         if (this._bold) ret += '@o';
 
-        return ret;
+        return ret === '!' ? '' : ret;
     }
 
     back(): PostelRow {
