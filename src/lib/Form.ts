@@ -71,10 +71,12 @@ class Form implements IWithResult {
         return Lang.PostelRow({ type: 'abs', value: 29 })
             .prePostText('@-', '@+')
             .appendText(this.parent.comm.amount.toPostelString())
+            .setMaxWidth(11)
             .setAlignLeft(34)
             .back()
             .appendText(this.parent.comm.amount.toPostelString())
             .setAlignLeft(50)
+            .setMaxWidth(11)
             .back()
             .result();
     }
@@ -180,10 +182,9 @@ class Form implements IWithResult {
     private barcode(): string {
         const cl = this.codeLineItems();
         return (
-            Lang.PostelRow({ type: 'abs', value: 64 })
-                .lineSpacing(144)
-                .font(4)
-                .result() +
+            // Use manual code because Lang produce
+            // this !INL 144;TOP;TEX 4;SPA 64
+            '!TEX 4;TOP;INL 144;SPA 64' + Lang.EOL +
             Lang.PostelRow({ type: 'rel' })
                 .font(98)
                 .appendText(
@@ -201,10 +202,12 @@ class Form implements IWithResult {
     private datamatrix(): string {
         const cl = this.codeLineItems();
         return (
-            '!INL 0;TEX 2;INL 5;TEX 4;' +
-            Lang.PostelRow({ type: 'abs', value: 70 })
+            // Manual code because have strange command order
+            // if it used Lang result was
+            // this !INL 0;TEX 2;INL 5;TEX 4;INL 59;TOP;SPA 70
+            '!INL 0;TEX 2;INL 5;TEX 4;TOP;INL 59;SPA 70' + Lang.EOL + 
+            Lang.PostelRow({ type: 'rel' })
                 .shebang(false)
-                .lineSpacing(59)
                 .prePostText('@<@-@Z99', '@>@+')
                 .appendText(
                     cl.customCodCliChecksum +
