@@ -5,6 +5,7 @@ class Lang {
     static EOL = '\r\n';
 
     static newLine = (jumpLineCount: number) => {
+        if (jumpLineCount === 0) return '';
         return 'SPA ' + jumpLineCount.toString();
     };
 
