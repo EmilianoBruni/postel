@@ -66,10 +66,10 @@ class PostelRow implements IWithResult {
         if (this._font) rowM.push('TEX ' + this._font);
         // 4° BOT/SPA
         if (this._position.type === 'bot') rowM.push('BOT');
-        else rowM.push(Lang.newLine(this._position.value ?? 0));
+        else if (this._position.value !== undefined && this._position.value !== 0) rowM.push(Lang.newLine(this._position.value));
 
         const shebang = () => (this._shebang ? '!' : '');
-        rows.push(shebang() + rowM.join(';'));
+        if (rowM.length>0) rows.push(shebang() + rowM.join(';'));
 
         let row0 = this._textBlocks.join('');
         if (this._prePostText.pre !== undefined)
@@ -78,7 +78,7 @@ class PostelRow implements IWithResult {
             row0 += this._prePostText.post;
         rows.push(row0);
 
-        return rows.join(Lang.EOL);
+        return rows.length>0 ? rows.join(Lang.EOL) : '' ;
     }
 
     toString(): string {
