@@ -1,8 +1,8 @@
 {
-  "name": "dev",
+  "name": "postel-ita",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Library to create files compatible with italian Poste Postel system",
+  "main": "build/index.js",
   "scripts": {
     "dev": "npx nodemon",
     "build": "rimraf ./build && tsc",
@@ -12,8 +12,8 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "npm run lint -- --fix"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["nodejs", "poste", "italiane"],
+  "author": "Emiliano Bruni <info@ebruni.it>",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^29.5.2",
