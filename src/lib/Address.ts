@@ -12,6 +12,7 @@ class Address implements IWithResult {
     public comune = '';
     public provincia = '';
     public id = '000000';
+    public fiscalCode = '';
 
     constructor({ ...opt }: AddressParams) {
         this.header = opt.header ?? this.header;
@@ -23,6 +24,7 @@ class Address implements IWithResult {
         this.comune = opt.comune;
         this.provincia = opt.provincia;
         this.id = opt.id;
+        this.fiscalCode = opt.fiscalCode;
     }
 
     result({ where }: { where: 'missive' | 'form' }): string {
