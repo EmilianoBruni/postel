@@ -83,7 +83,7 @@ class Form implements IWithResult {
 
     private customCodCli(): string {
         return (
-            this.parent.address.id.padStart(6, '0') +
+            this.parent.address.id.replace(/[^\d]/,'').padStart(6, '0') +
             this.parent.comm.invoiceId.padStart(6, '0') +
             this.parent.comm.installment.toString().padStart(2, '0') +
             this.parent.comm.invoiceDate.getFullYear().toString().substring(2)
