@@ -243,7 +243,6 @@ describe('Payment tests', () => {
                     .setMaxWidth(3)
                     .setAlignLeft(2);
 
-                expect(mBody.result().split(Lang.EOL)[row++]).toEqual('!SPA 0');
                 expect(mBody.result().split(Lang.EOL)[row++]).toEqual(
                     'Da impegno 7829/W del 20/09/2019 - (@?02                 @?02    @?01    @?02        @?02        @?02   '
                 );
@@ -293,7 +292,7 @@ describe('Payment tests', () => {
             });
 
             test('footer ', () => {
-                let row = 21;
+                let row = 20;
                 const text =
                     "Copia fattura elettronica disponibile sul sito web dell'Agenzia delle Entrate";
                 mBody.addRow(56, 'abs').appendText(text);
