@@ -83,7 +83,7 @@ class Form implements IWithResult {
 
     private customCodCli(): string {
         return (
-            this.parent.address.id.replace(/[^\d]/,'').padStart(6, '0') +
+            this.parent.address.id.replace(/[^\d]/, '').padStart(6, '0') +
             this.parent.comm.invoiceId.padStart(6, '0') +
             this.parent.comm.installment.toString().padStart(2, '0') +
             this.parent.comm.invoiceDate.getFullYear().toString().substring(2)
@@ -184,7 +184,8 @@ class Form implements IWithResult {
         return (
             // Use manual code because Lang produce
             // this !INL 144;TOP;TEX 4;SPA 64
-            '!TEX 4;TOP;INL 144;SPA 64' + Lang.EOL +
+            '!TEX 4;TOP;INL 144;SPA 64' +
+            Lang.EOL +
             Lang.PostelRow({ type: 'rel' })
                 .font(98)
                 .appendText(
@@ -205,7 +206,8 @@ class Form implements IWithResult {
             // Manual code because have strange command order
             // if it used Lang result was
             // this !INL 0;TEX 2;INL 5;TEX 4;INL 59;TOP;SPA 70
-            '!INL 0;TEX 2;INL 5;TEX 4;TOP;INL 59;SPA 70' + Lang.EOL + 
+            '!INL 0;TEX 2;INL 5;TEX 4;TOP;INL 59;SPA 70' +
+            Lang.EOL +
             Lang.PostelRow({ type: 'rel' })
                 .shebang(false)
                 .prePostText('@<@-@Z99', '@>@+')
