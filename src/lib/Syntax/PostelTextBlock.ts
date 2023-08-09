@@ -48,12 +48,18 @@ class PostelTextBlock implements IWithResult {
 
         if (this._alignRight !== undefined && this._maxWidth !== undefined)
             textTrunc = textTrunc.padStart(this._maxWidth, ' ');
-
         else if (this._maxWidth !== undefined)
             textTrunc = textTrunc.padEnd(this._maxWidth, ' ');
 
         const textLen = textTrunc.length;
-        const text = textTrunc.replace('€', '@L:'); // TODO: implement others
+        const text = textTrunc
+            .replace('€', '@L:')
+            .replace('à', '@LH')
+            .replace('è', '@LI')
+            .replace('é', '@LE')
+            .replace('ì', '@LY')
+            .replace('ò', '@LJ')
+            .replace('ù', '@LK');
 
         let padding = 0;
         if (this._alignRight !== undefined)
