@@ -1,8 +1,6 @@
 import Currency from './lib/Currency';
 import { IWithResult } from './lib/IWithResult';
 
-type Brand<K, T> = K & { __brand: T };
-
 type StringOfLength<Min, Max> = string & {
     min: Min;
     max: Max;
@@ -34,11 +32,10 @@ export const stringOfLength = <Min extends number, Max extends number>(
     return input; // the type of input here is now StringOfLength<Min,Max>
 };
 
-//type Convenzione = Brand<StringOfLength<7, 7>, 'convenzione'>;
-type Convenzione = Brand<number, 'convenzione'>;
-type Grafico = Brand<string, 'grafico'>;
-type CartaIntestata = Brand<string, 'cintestata'>;
-type LogoBollettino = Brand<string, 'logob'>;
+type Convenzione = number;
+type Grafico = string;
+type CartaIntestata = string;
+type LogoBollettino = string;
 type Bollettino = 'BOLPEUR5' | 'BOLEUR5';
 type BollettinoType = 'CEE896SI';
 type Prio = 'PRIO' | 'P4P';
