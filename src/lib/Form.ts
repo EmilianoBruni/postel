@@ -82,7 +82,7 @@ class Form implements IWithResult {
     }
 
     private customCodCli(): string {
-        // strutture: 6 cifre del codice cliente (strippato della prima lettera) 
+        // strutture: 6 cifre del codice cliente (strippato della prima lettera)
         // + le 9 cifre della fattura + '0' finale inutilizzato per ora
         return (
             this.parent.address.id.replace(/[^\d]/, '').padStart(6, '0') +
