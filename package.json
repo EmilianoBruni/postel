@@ -2,11 +2,11 @@
   "name": "postel-ita",
   "version": "1.0.1",
   "description": "Library to create files compatible with italian Poste Postel system",
-  "main": "dist/index.js",
+  "main": "build/index.js",
   "scripts": {
     "dev": "npx nodemon",
     "build": "pnpm run clean; tsc",
-    "clean": "rimraf ./dist",
+    "clean": "rimraf ./build",
     "test": "jest",
     "test:coverage": "jest --coverage && rimraf ./coverage",
     "prepublishOnly": "pnpm lint:fix && pnpm build && pnpm test",
