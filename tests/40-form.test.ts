@@ -11,7 +11,7 @@ beforeAll(() => {
     postel = new Postel();
 });
 
-afterAll(() => console.log(postel.result()));
+// afterAll(() => console.log(postel.result()));
 
 describe('Payment tests', () => {
     let payment: Payment;

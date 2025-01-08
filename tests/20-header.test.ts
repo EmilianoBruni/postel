@@ -10,7 +10,7 @@ beforeAll(() => {
     postel = new Postel();
 });
 
-afterAll(() => console.log(postel.result()));
+// afterAll(() => console.log(postel.result()));
 
 test('Has an header class', () => {
     expect(postel.header).toBeDefined();

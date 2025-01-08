@@ -6,7 +6,7 @@ beforeAll(() => {
     postel = new Postel();
 });
 
-afterAll(() => console.log(postel.result()));
+// afterAll(() => console.log(postel.result()));
 
 test('I want a class to be defined', () => {
     expect(postel).toBeDefined();

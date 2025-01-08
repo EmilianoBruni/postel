@@ -14,7 +14,7 @@ beforeAll(() => {
     postel = new Postel();
 });
 
-afterAll(() => console.log(postel.result()));
+// afterAll(() => console.log(postel.result()));
 
 describe('Address tests', () => {
     let address: Address;
