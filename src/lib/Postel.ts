@@ -37,4 +37,4 @@ class Postel {
     }
 }
 
-export { Postel };
+export default Postel;
