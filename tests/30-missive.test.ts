@@ -1,5 +1,4 @@
-import Postel from '../src';
-import Payment from '../src/lib/Payment';
+import { Postel, Payment } from '../src';
 import Address from '../src/lib/Address';
 import Lang from '../src/lib/Lang';
 import Missive from '../src/lib/Missive';

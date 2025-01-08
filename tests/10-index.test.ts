@@ -1,4 +1,4 @@
-import Postel from '../src';
+import { Postel } from '../src';
 
 let postel: Postel;
 

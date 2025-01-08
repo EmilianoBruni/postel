@@ -1,4 +1,4 @@
-import Postel from '../src';
+import { Postel } from '../src';
 import Lang from '../src/lib/Lang';
 import { describe } from 'node:test';
 import { headerParams } from './data';

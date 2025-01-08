@@ -1,9 +1,6 @@
-import Postel from '../src';
-import Payment from '../src/lib/Payment';
+import { Postel, Payment } from '../src';
 import { describe } from 'node:test';
-// import Form from '../src/lib/Form';
 import { paymentParams } from './data';
-//import { paymentParams } from './data.priv';
 
 let postel: Postel;
 
