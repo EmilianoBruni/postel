@@ -97,7 +97,10 @@ class Form implements IWithResult {
 
     private customCodCliCheckSum(): string {
         const ccc = this.customCodCli();
-        return ccc + this.checkSum(Number.parseInt(ccc)).toString();
+        return (
+            ccc +
+            this.checkSum(Number.parseInt(ccc)).toString().padStart(2, '0')
+        );
     }
 
     private customCodCliLine(): string {
