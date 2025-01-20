@@ -1,0 +1,17 @@
+/docker
+.devcontainer.json
+.tap
+.vscode
+.dockerignore
+.eslintrc.json
+.prettierrc.json
+.github
+.husky
+test
+tests
+src/*
+@types
+tsconfig.json
+eslint.config.mjs
+jest.config.js
+nodemon.json
