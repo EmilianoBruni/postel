@@ -6,7 +6,7 @@ import {
     HeaderParams,
     CartaIntestata,
     Convenzione,
-    Grafico,
+    Lotto,
     LogoBollettino
 } from '../src/types';
 
@@ -16,7 +16,7 @@ const headerParams: HeaderParams = {
     fax: '+3978687687',
     mail: 'paolino@paperino.it',
     idConvenzione: 188778 as Convenzione,
-    grafico: 'FT56666AGG' as Grafico,
+    lotto: 'FT123456' as Lotto,
     cartaIntestata: 'JRRY6678' as CartaIntestata,
     logoBollettino: 'KU66758' as LogoBollettino
 };
