@@ -33,9 +33,10 @@ export const stringOfLength = <Min extends number, Max extends number>(
 };
 
 type Convenzione = number;
-type Grafico = string;
+type Lotto = string;
 type CartaIntestata = string;
 type LogoBollettino = string;
+type TipoLotto = 'UN';
 type Bollettino = 'BOLPEUR5' | 'BOLEUR5';
 type BollettinoType = 'CEE896SI';
 type Prio = 'PRIO' | 'P4P';
@@ -47,7 +48,8 @@ interface HeaderParams {
     mail: string;
     prio?: Prio;
     idConvenzione: Convenzione;
-    grafico: Grafico;
+    lotto: Lotto;
+    tipoLotto?: TipoLotto;
     bollettino?: Bollettino;
     bollettinoType?: BollettinoType;
     cartaIntestata: CartaIntestata;
@@ -93,7 +95,8 @@ type PostelRowConstructor = PostelRowPosition;
 export {
     HeaderParams,
     Convenzione,
-    Grafico,
+    Lotto,
+    TipoLotto,
     Bollettino,
     Prio,
     CartaIntestata,
