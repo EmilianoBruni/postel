@@ -51,8 +51,8 @@ describe('Header tests', () => {
         );
     });
     test('line4 has correct grafico', () => {
-        expect(hr[3].substring(12, 12 + hParams.grafico.length)).toEqual(
-            hParams.grafico
+        expect(hr[3].substring(12, 12 + hParams.lotto.length)).toEqual(
+            hParams.lotto
         );
     });
     test('line4 has correct bollettino type', () => {
