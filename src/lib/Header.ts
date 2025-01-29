@@ -2,7 +2,8 @@ import Lang from './Lang';
 import {
     HeaderParams,
     Convenzione,
-    Grafico,
+    Lotto,
+    TipoLotto,
     Bollettino,
     Prio,
     CartaIntestata,
@@ -17,7 +18,8 @@ class Header {
     public mail = '';
     public prio = 'P4P' as Prio;
     public idConvenzione = 0 as Convenzione;
-    public grafico = '' as Grafico;
+    public lotto = 'XXXXXXXX' as Lotto;
+    public tipoLotto = 'UN' as TipoLotto;
     public bollettino = 'BOLEUR5' as Bollettino;
     public cartaIntestata = '' as CartaIntestata;
     public bollettinoType = 'CEE896SI' as BollettinoType;
@@ -32,7 +34,7 @@ class Header {
         if (opt.idConvenzione > 9999999)
             new Error('Id Convenzione must be <= 9999999');
         this.idConvenzione = opt.idConvenzione;
-        this.grafico = opt.grafico;
+        this.lotto = opt.lotto;
         this.bollettino = this.bollettino ?? opt.bollettino;
         this.bollettinoType = this.bollettinoType ?? opt.bollettinoType;
         this.cartaIntestata = opt.cartaIntestata;
@@ -50,7 +52,8 @@ class Header {
         const row4 =
             '//C Z' +
             this.idConvenzione.toString().padStart(7, '0') +
-            this.grafico;
+            this.lotto +
+            this.tipoLotto;
         rows.push(row4.padEnd(37) + this.bollettino);
 
         rows.push(`//G L 01${this.cartaIntestata}03660394`);
