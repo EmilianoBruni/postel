@@ -1,6 +1,6 @@
 {
   "name": "postel-ita",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Library to create files compatible with italian Poste Postel system",
   "main": "build/index.js",
   "scripts": {
@@ -12,6 +12,10 @@
     "prepublishOnly": "pnpm lint:fix && pnpm build && pnpm test",
     "lint": "eslint \"src/**/*.[jt]s?(x)\" \"tests/**/*.?(c)[jt]s\"",
     "lint:fix": "npm run lint -- --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmilianoBruni/postel.git"
   },
   "keywords": [
     "nodejs",
